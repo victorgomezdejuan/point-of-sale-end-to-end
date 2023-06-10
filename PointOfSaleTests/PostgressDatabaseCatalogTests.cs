@@ -50,15 +50,15 @@ public class PostgressDatabaseCatalogTests {
         Assert.Equal(productToBeFound, foundProduct);
     }
 
-    //[Fact]
-    //public void ProductNotFound() {
-    //    // Arrange
-    //    var catalog = new PostgressDatabaseCatalog(new List<Product>());
+    [Fact]
+    public void ProductNotFound() {
+        // Arrange
+        var catalog = new PostgressDatabaseCatalog(DatabaseConnectionString);
 
-    //    // Act
-    //    var foundProduct = catalog.FindProductByCode("54321");
+        // Act
+        var foundProduct = catalog.FindProductByCode("54321");
 
-    //    // Assert
-    //    Assert.Null(foundProduct);
-    //}
+        // Assert
+        Assert.Null(foundProduct);
+    }
 }
