@@ -28,9 +28,9 @@ public class PostgressDatabaseCatalog : ICatalog {
         connection.Open();
 
         using var selectProductCommand = new NpgsqlCommand(
-                       "SELECT code, price FROM products WHERE code = @code",
-                                  connection
-                                         );
+            "SELECT code, price FROM products WHERE code = @code",
+            connection
+        );
         selectProductCommand.Parameters.AddWithValue("code", code);
         using var reader = selectProductCommand.ExecuteReader();
 
