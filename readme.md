@@ -1,5 +1,5 @@
 # Point of sale
-This kata is part of the course "The World's Best Intro to TDD, Level 1" (https://www.jbrains.ca/training/course/worlds-best-intro-to-tdd/).
+This exercise is part of the course "The World's Best Intro to TDD, Level 1" (https://www.jbrains.ca/training/course/worlds-best-intro-to-tdd/).
 
 Developed with dotnet (c#), xUnit and Visual Studio.
 
@@ -8,6 +8,7 @@ Developed with dotnet (c#), xUnit and Visual Studio.
 - Client-First Design
 - Evolutionary Design
 - DDD
+- End to end development
 
 ## Brief explanation
 JBrains ask us to develop a Point of Sale system for a store. The system should be able to:
