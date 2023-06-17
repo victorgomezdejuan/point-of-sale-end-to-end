@@ -14,6 +14,6 @@ using var stream = new NamedPipeClientStream(".", "DisplayPipe", PipeDirection.O
 stream.Connect();
 using var streamWriter = new StreamWriter(stream);
 streamWriter.AutoFlush = true;
-IBarcodeListener barcodeListener = new SaleHandler(catalog, new Display(streamWriter));
+IBarcodeListener barcodeListener = new SaleOneItemHandler(catalog, new Display(streamWriter));
 var barcodeInterpreter = new BarcoreInterpreter(Console.In, barcodeListener);
 barcodeInterpreter.Process();
