@@ -12,8 +12,10 @@ public class SaleOneItemHandler : IBarcodeListener {
     }
 
     public SaleOneItemView OnBarcode(string barcode) {
-        if (barcode == "")
+        if (barcode == "") {
             display.DisplayEmptyCode();
+            return new SaleOneItemView("Empty barcode", new Dictionary<string, object>());
+        }
         else {
             Product? product = catalog.FindProductByCode(barcode);
             if (product is null) {
@@ -28,9 +30,6 @@ public class SaleOneItemHandler : IBarcodeListener {
                     { "price", product.Price }
                 });
             }
-
         }
-
-        return new SaleOneItemView("", new Dictionary<string, object>());
     }
 }

@@ -72,12 +72,16 @@ public class SaleOneItemHandlerTests {
         var saleHandler = new SaleOneItemHandler(catalogMock.Object, displayMock.Object);
 
         // Act
-        saleHandler.OnBarcode("");
+        SaleOneItemView view = saleHandler.OnBarcode("");
 
         // Assert
         catalogMock.Verify(d => d.FindProductByCode(""), Times.Never);
         displayMock.Verify(d => d.DisplayProductNotFound(""), Times.Never);
         displayMock.Verify(d => d.DisplayPrice(It.IsAny<Price>()), Times.Never);
         displayMock.Verify(d => d.DisplayEmptyCode());
+        view.Name.Should().Be("Empty barcode");
+        view.Model.Should().BeEquivalentTo(
+            new Dictionary<string, object>()
+        );
     }
 }
