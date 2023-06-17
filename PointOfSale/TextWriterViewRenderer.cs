@@ -2,16 +2,10 @@
 using PointOfSale.ValueObjects;
 
 namespace PointOfSale;
-public class Display : IViewRenderer {
+public class TextWriterViewRenderer : IViewRenderer {
     private readonly TextWriter textWriter;
 
-    public Display(TextWriter textWriter) => this.textWriter = textWriter;
-
-    public void DisplayPrice(Price price) => textWriter.WriteLine($"Price: {price}");
-
-    public void DisplayProductNotFound(string code) => textWriter.WriteLine($"Product not found: {code}");
-
-    public void DisplayEmptyCode() => textWriter.WriteLine("Empty barcode");
+    public TextWriterViewRenderer(TextWriter textWriter) => this.textWriter = textWriter;
 
     public void Render(SaleOneItemView saleOneItemView) {
         if (saleOneItemView.Name.Equals("Item found")) {
@@ -24,4 +18,10 @@ public class Display : IViewRenderer {
             DisplayEmptyCode();
         }
     }
+
+    private void DisplayPrice(Price price) => textWriter.WriteLine($"Price: {price}");
+
+    private void DisplayProductNotFound(string code) => textWriter.WriteLine($"Product not found: {code}");
+
+    private void DisplayEmptyCode() => textWriter.WriteLine("Empty barcode");
 }

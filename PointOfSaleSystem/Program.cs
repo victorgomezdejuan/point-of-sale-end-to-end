@@ -15,5 +15,5 @@ stream.Connect();
 using var streamWriter = new StreamWriter(stream);
 streamWriter.AutoFlush = true;
 IBarcodeListener barcodeListener = new SaleOneItemHandler(catalog);
-var barcodeInterpreter = new BarcoreInterpreter(Console.In, barcodeListener, new Display(streamWriter));
+var barcodeInterpreter = new BarcoreInterpreter(Console.In, barcodeListener, new TextWriterViewRenderer(streamWriter));
 barcodeInterpreter.Process();

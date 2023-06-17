@@ -2,13 +2,13 @@
 using PointOfSale.ValueObjects;
 
 namespace PointOfSaleTests;
-public class DisplayRenderTests {
+public class TextWriterViewRendererRenderTests {
     private readonly TextWriter textWriter;
-    private readonly Display display;
+    private readonly TextWriterViewRenderer display;
 
-    public DisplayRenderTests() {
+    public TextWriterViewRendererRenderTests() {
         textWriter = new StringWriter();
-        display = new Display(textWriter);
+        display = new TextWriterViewRenderer(textWriter);
     }
 
     [Fact]
