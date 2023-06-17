@@ -12,4 +12,10 @@ public class Display : IDisplay {
     public void DisplayProductNotFound(string code) => textWriter.WriteLine($"Product not found: {code}");
 
     public void DisplayEmptyCode() => textWriter.WriteLine("Empty barcode");
+
+    public void Render(SaleOneItemView saleOneItemView) {
+        if (saleOneItemView.Name.Equals("Item found")) {
+            DisplayPrice((Price)saleOneItemView.Model["price"]);
+        }
+    }
 }
