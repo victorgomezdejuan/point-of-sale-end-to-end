@@ -23,6 +23,18 @@ public class DisplayRenderTests {
         Assert.Equal("Price: $77.55", textWriter.ToString().Trim());
     }
 
+    [Fact]
+    public void ProductNotFound() {
+        display.Render(
+            new SaleOneItemView(
+                "Item not found",
+                new Dictionary<string, object> { { "barcode", "12345" } }
+            )
+        );
+
+        Assert.Equal("Product not found: 12345", textWriter.ToString().Trim());
+    }
+
     internal void Dispose() {
         textWriter.Dispose();
     }

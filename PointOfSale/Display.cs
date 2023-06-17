@@ -17,5 +17,8 @@ public class Display : IDisplay {
         if (saleOneItemView.Name.Equals("Item found")) {
             DisplayPrice((Price)saleOneItemView.Model["price"]);
         }
+        else if (saleOneItemView.Name.Equals("Item not found")) {
+            DisplayProductNotFound((string)saleOneItemView.Model["barcode"]);
+        }
     }
 }
