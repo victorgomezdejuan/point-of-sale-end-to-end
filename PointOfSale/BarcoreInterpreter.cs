@@ -4,10 +4,12 @@ namespace PointOfSale;
 public class BarcoreInterpreter {
     private readonly TextReader textReader;
     private readonly IBarcodeListener barcodeListener;
+    private readonly IViewRenderer viewRenderer;
 
-    public BarcoreInterpreter(TextReader textReader, IBarcodeListener barcodeListener) {
+    public BarcoreInterpreter(TextReader textReader, IBarcodeListener barcodeListener, IViewRenderer viewRenderer) {
         this.textReader = textReader;
         this.barcodeListener = barcodeListener;
+        this.viewRenderer = viewRenderer;
     }
 
     public void Process() {
@@ -15,7 +17,8 @@ public class BarcoreInterpreter {
             string? barcode = textReader.ReadLine();
             if (barcode is null)
                 break;
-            barcodeListener.OnBarcode(barcode);
+            SaleOneItemView view = barcodeListener.OnBarcode(barcode);
+            viewRenderer.Render(view);
         }
     }
 }
