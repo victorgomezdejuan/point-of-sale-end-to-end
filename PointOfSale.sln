@@ -7,9 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSale", "PointOfSale\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSaleTests", "PointOfSaleTests\PointOfSaleTests.csproj", "{71CA0D58-D549-4CE3-B13D-8F7CF644B91F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PointOfSaleSystem", "PointOfSaleSystem\PointOfSaleSystem.csproj", "{8DCD566C-6307-42A9-A5E4-97CFE4F72D9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PointOfSaleSystem", "PointOfSaleSystem\PointOfSaleSystem.csproj", "{8DCD566C-6307-42A9-A5E4-97CFE4F72D9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopDisplayApp", "DesktopDisplayApp\DesktopDisplayApp.csproj", "{F56F82AF-A5BE-4A09-BC11-FE6812EA8A26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DesktopDisplayApp", "DesktopDisplayApp\DesktopDisplayApp.csproj", "{F56F82AF-A5BE-4A09-BC11-FE6812EA8A26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61AD3100-A67D-4F64-9557-452158836336}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
