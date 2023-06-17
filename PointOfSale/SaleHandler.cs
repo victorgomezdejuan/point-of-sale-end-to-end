@@ -11,19 +11,22 @@ public class SaleHandler : IBarcodeListener {
         this.display = display;
     }
 
-    public void OnBarcode(string barcode) {
+    public SaleOneItemView OnBarcode(string barcode) {
         if (barcode == "")
             display.DisplayEmptyCode();
         else {
             Product? product = catalog.FindProductByCode(barcode);
-            DisplayProductInfo(barcode, product);
-        }
-    }
+            if (product is null)
+                display.DisplayProductNotFound(barcode);
+            else {
+                display.DisplayPrice(product.Price);
+                return new SaleOneItemView("Item found", new Dictionary<string, object>() {
+                    { "price", product.Price }
+                });
+            }
 
-    private void DisplayProductInfo(string barcode, Product? product) {
-        if (product is null)
-            display.DisplayProductNotFound(barcode);
-        else
-            display.DisplayPrice(product.Price);
+        }
+
+        return new SaleOneItemView("", new Dictionary<string, object>());
     }
 }

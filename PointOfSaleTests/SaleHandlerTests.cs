@@ -1,3 +1,4 @@
+using FluentAssertions;
 using Moq;
 using PointOfSale;
 using PointOfSale.Interfaces;
@@ -19,11 +20,19 @@ public class SaleHandlerTests {
         var saleHandler = new SaleHandler(catalogMock.Object, displayMock.Object);
 
         // Act
-        saleHandler.OnBarcode(productToBeFound.Code);
+        SaleOneItemView view = saleHandler.OnBarcode(productToBeFound.Code);
 
         // Assert
         catalogMock.Verify(d => d.FindProductByCode(productToBeFound.Code));
         displayMock.Verify(d => d.DisplayPrice(productToBeFound.Price));
+        view.Name.Should().Be("Item found");
+        view.Model.Should().BeEquivalentTo(
+            new Dictionary<string, object>(
+                new List<KeyValuePair<string, object>>() {
+                    new("price", Price.FromDecimal(77.55M))
+                }
+            )
+        );
     }
 
     [Fact]
