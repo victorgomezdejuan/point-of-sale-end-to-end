@@ -6,7 +6,7 @@ using PointOfSale.ValueObjects;
 
 namespace PointOfSaleTests;
 
-public class SaleHandlerTests {
+public class SaleOneItemHandlerTests {
     [Fact]
     public void ItemFound() {
         // Arrange
@@ -17,7 +17,7 @@ public class SaleHandlerTests {
 
         var displayMock = new Mock<IDisplay>();
 
-        var saleHandler = new SaleHandler(catalogMock.Object, displayMock.Object);
+        var saleHandler = new SaleOneItemHandler(catalogMock.Object, displayMock.Object);
 
         // Act
         SaleOneItemView view = saleHandler.OnBarcode(productToBeFound.Code);
@@ -45,14 +45,22 @@ public class SaleHandlerTests {
 
         var displayMock = new Mock<IDisplay>();
 
-        var saleHandler = new SaleHandler(catalogMock.Object, displayMock.Object);
+        var saleHandler = new SaleOneItemHandler(catalogMock.Object, displayMock.Object);
 
         // Act
-        saleHandler.OnBarcode(productToBeFound.Code);
+        SaleOneItemView view = saleHandler.OnBarcode(productToBeFound.Code);
 
         // Assert
         catalogMock.Verify(d => d.FindProductByCode(productToBeFound.Code));
         displayMock.Verify(d => d.DisplayProductNotFound(productToBeFound.Code));
+        view.Name.Should().Be("Item not found");
+        view.Model.Should().BeEquivalentTo(
+            new Dictionary<string, object>(
+                new List<KeyValuePair<string, object>>() {
+                    new("barcode", "11111")
+                }
+            )
+        );
     }
 
     [Fact]
@@ -61,7 +69,7 @@ public class SaleHandlerTests {
         var catalogMock = new Mock<ICatalog>();
         var displayMock = new Mock<IDisplay>();
 
-        var saleHandler = new SaleHandler(catalogMock.Object, displayMock.Object);
+        var saleHandler = new SaleOneItemHandler(catalogMock.Object, displayMock.Object);
 
         // Act
         saleHandler.OnBarcode("");
