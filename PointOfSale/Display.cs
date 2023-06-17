@@ -2,7 +2,7 @@
 using PointOfSale.ValueObjects;
 
 namespace PointOfSale;
-public class Display : IDisplay {
+public class Display : IViewRenderer {
     private readonly TextWriter textWriter;
 
     public Display(TextWriter textWriter) => this.textWriter = textWriter;
