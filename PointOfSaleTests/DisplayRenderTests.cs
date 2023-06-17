@@ -35,6 +35,18 @@ public class DisplayRenderTests {
         Assert.Equal("Product not found: 12345", textWriter.ToString().Trim());
     }
 
+    [Fact]
+    public void EmptyCode() {
+        display.Render(
+            new SaleOneItemView(
+                "Empty barcode",
+                new Dictionary<string, object>()
+            )
+        );
+
+        Assert.Equal("Empty barcode", textWriter.ToString().Trim());
+    }
+
     internal void Dispose() {
         textWriter.Dispose();
     }

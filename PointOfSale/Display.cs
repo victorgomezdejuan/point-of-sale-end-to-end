@@ -20,5 +20,8 @@ public class Display : IDisplay {
         else if (saleOneItemView.Name.Equals("Item not found")) {
             DisplayProductNotFound((string)saleOneItemView.Model["barcode"]);
         }
+        else if (saleOneItemView.Name.Equals("Empty barcode")) {
+            DisplayEmptyCode();
+        }
     }
 }
