@@ -46,4 +46,20 @@ public class BarcodeInterpreterCallsToViewRendererTests {
         viewRenderer.Verify(v => v.Render(view2), Times.Once);
         viewRenderer.Verify(v => v.Render(view3), Times.Once);
     }
+
+    [Fact]
+    public void ReadEmptyBarcode() {
+        var textReader = new StringReader("\r\n");
+        var barcodeListener = new Mock<IBarcodeListener>();
+        var viewRenderer = new Mock<IViewRenderer>();
+        SaleOneItemView view = new("viewName", new Dictionary<string, object>() { { "key", "value" } });
+        barcodeListener
+            .Setup<SaleOneItemView>(b => b.OnBarcode(""))
+            .Returns(view);
+        BarcoreInterpreter interpreter = new(textReader, barcodeListener.Object, viewRenderer.Object);
+
+        interpreter.Process();
+
+        viewRenderer.Verify(v => v.Render(view), Times.Once);
+    }
 }
