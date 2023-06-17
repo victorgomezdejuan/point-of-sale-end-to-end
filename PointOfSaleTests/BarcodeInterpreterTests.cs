@@ -3,11 +3,11 @@ using PointOfSale;
 using PointOfSale.Interfaces;
 
 namespace PointOfSaleTests;
-public class BarcodeInterpreterCallsToViewRendererTests {
+public class BarcodeInterpreterTests {
     private readonly Mock<IBarcodeListener> barcodeListener;
     private readonly Mock<IViewRenderer> viewRenderer;
 
-    public BarcodeInterpreterCallsToViewRendererTests() {
+    public BarcodeInterpreterTests() {
         barcodeListener = new Mock<IBarcodeListener>();
         viewRenderer = new Mock<IViewRenderer>();
     }
@@ -26,6 +26,7 @@ public class BarcodeInterpreterCallsToViewRendererTests {
         interpreter.Process();
 
         // Assert
+        barcodeListener.Verify(b => b.OnBarcode("12345"), Times.Once);
         viewRenderer.Verify(v => v.Render(view), Times.Once);
     }
 
@@ -51,6 +52,9 @@ public class BarcodeInterpreterCallsToViewRendererTests {
         interpreter.Process();
 
         // Assert
+        barcodeListener.Verify(b => b.OnBarcode("11111"), Times.Once);
+        barcodeListener.Verify(b => b.OnBarcode("22222"), Times.Once);
+        barcodeListener.Verify(b => b.OnBarcode("33333"), Times.Once);
         viewRenderer.Verify(v => v.Render(view1), Times.Once);
         viewRenderer.Verify(v => v.Render(view2), Times.Once);
         viewRenderer.Verify(v => v.Render(view3), Times.Once);
@@ -70,6 +74,7 @@ public class BarcodeInterpreterCallsToViewRendererTests {
         interpreter.Process();
 
         // Assert
+        barcodeListener.Verify(b => b.OnBarcode(""), Times.Once);
         viewRenderer.Verify(v => v.Render(view), Times.Once);
     }
 }
