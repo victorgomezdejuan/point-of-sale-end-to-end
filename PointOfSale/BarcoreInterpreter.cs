@@ -21,7 +21,7 @@ public class BarcoreInterpreter {
         }
     }
 
-    private void RenderCorrespondingResponse(string? barcode) {
+    private void RenderCorrespondingResponse(string barcode) {
         SaleOneItemView view = barcodeListener.OnBarcode(barcode);
         viewRenderer.Render(view);
     }
