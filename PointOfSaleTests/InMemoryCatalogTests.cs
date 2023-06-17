@@ -7,7 +7,6 @@ public class CatalogTests {
     public void ProductFound() {
         // Arrange
         var productToBeFound = Product.FromCodeAndPrice("12345", Price.FromDecimal(77.55M));
-
         var catalog = new InMemoryCatalog(new List<Product> { productToBeFound });
 
         // Act
