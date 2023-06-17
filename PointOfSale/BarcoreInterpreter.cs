@@ -17,8 +17,12 @@ public class BarcoreInterpreter {
             string? barcode = textReader.ReadLine();
             if (barcode is null)
                 break;
-            SaleOneItemView view = barcodeListener.OnBarcode(barcode);
-            viewRenderer.Render(view);
+            RenderCorrespondingResponse(barcode);
         }
+    }
+
+    private void RenderCorrespondingResponse(string? barcode) {
+        SaleOneItemView view = barcodeListener.OnBarcode(barcode);
+        viewRenderer.Render(view);
     }
 }
